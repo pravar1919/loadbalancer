@@ -1,0 +1,44 @@
+version: '3'
+services:
+  web1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose: 
+      - 8001
+    environment: 
+      - PORT=8001
+  web2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose: 
+      - 8002
+    environment: 
+      - PORT=8002
+  web3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose: 
+      - 8003
+    environment: 
+      - PORT=8003
+  web4:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose: 
+      - 8004
+    environment: 
+      - PORT=8004
+  nginx:
+      build:
+          context: ./nginx
+          dockerfile: Dockerfile
+      ports:
+          - 8000:80
+      depends_on:
+        - web1
+        - web2
+        - web3
